@@ -2,62 +2,207 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Streaming Castillo</title><style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+<title><span style="font-size:40px;letter-spacing:1px">🏰 Mundo Digital Castillo</span></title><style>
+body{
+  background:#020617;
+  color:white;
+  font-family:'Poppins',sans-serif;
+  padding:15px;
+}
 
-body{background:#020617;color:white;}
+h1{font-size:44px;margin-bottom:40px;text-align:center;color:#00f0ff;text-shadow:0 0 10px #00f0ff,0 0 20px #00f0ff;animation:fadeIn 1s ease-in-out;}
 
-header{padding:15px;display:flex;align-items:center;gap:10px;}
-header img{width:90px;border-radius:10px;box-shadow:0 0 15px #00f0ff;}
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(-20px);} 
+  to{opacity:1; transform:translateY(0);} 
+}
 
-.buscador{flex:1;}
-.buscador input{width:100%;padding:10px;border-radius:10px;border:1px solid #00f0ff;background:#020617;color:white;}
+.bienvenida{
+  animation:fadeIn 1.2s ease-in-out;
+  background:#0f172a;
+  padding:15px;
+  border-radius:12px;
+  box-shadow:0 0 15px rgba(0,255,255,0.3);
+  margin-bottom:15px;
+}
 
-.container{padding:15px;}
+.productos{
+  display:flex;
+  overflow-x:auto;
+  gap:12px;
+  padding-bottom:10px;
+  scroll-snap-type:x mandatory;
+}
 
-.bienvenida{background:#0f172a;padding:15px;border-radius:12px;margin-bottom:15px;box-shadow:0 0 10px rgba(0,255,255,0.2);} 
-.bienvenida h2{color:#00f0ff;margin-bottom:5px;}
+.productos::-webkit-scrollbar{display:none;}
 
-.productos{display:flex;overflow-x:auto;gap:12px;padding-bottom:10px;}
-.producto{min-width:160px;background:#0f172a;padding:12px;border-radius:12px;text-align:center;box-shadow:0 0 10px rgba(0,255,255,0.2);} 
-.producto img{width:100%;height:40px;object-fit:contain;margin-bottom:6px;}
+.producto{
+  min-width:170px;
+  max-width:170px;
+  height:190px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  scroll-snap-align:start;
+}
 
-.precio{color:#00ff9d;margin:5px 0;font-weight:bold;}
+.producto img{
+  width:100%;
+  height:50px;
+  object-fit:contain;
+  background:white;
+  border-radius:8px;
+  margin-bottom:6px;
+}
 
-button{padding:8px;border:none;border-radius:10px;background:linear-gradient(145deg,#00f0ff,#0072ff);color:white;font-weight:bold;}
+.producto{
+  min-width:170px;
+  max-width:170px;
+  height:190px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
 
-.carrito{background:#0f172a;padding:12px;border-radius:12px;margin-top:15px;box-shadow:0 0 10px rgba(0,255,255,0.2);} 
+.producto img{
+  width:100%;
+  height:50px;
+  object-fit:contain;
+  background:white;
+  border-radius:8px;
+  margin-bottom:6px;
+}
+  display:flex;
+  overflow-x:auto;
+  gap:12px;
+  padding-bottom:10px;
+}
 
-.whatsapp{position:fixed;bottom:20px;right:20px;background:#25D366;padding:15px;border-radius:50px;color:white;text-decoration:none;font-weight:bold;}
-</style></head><body><header>
-<img src="logo.png">
-<div class="buscador">
-<input type="text" id="buscador" placeholder="Buscar..." onkeyup="filtrar()">
-</div>
-</header><div class="container"><div class="bienvenida">
-<h2>🔥 Bienvenido a Streaming Castillo</h2>
-<p>
-⚡ Entrega inmediata<br>
-💳 Pago por transferencia<br>
-⭐ +100 clientes satisfechos<br>
-💼 6 años brindando servicio<br>
-🚀 Compra ahora
-</p>
+.producto{
+  min-width:170px;
+  background:#0f172a;
+  padding:12px;
+  border-radius:14px;
+  text-align:center;
+  box-shadow:0 0 12px rgba(0,255,255,0.25);
+  transition:0.3s;
+}
+
+.producto:hover{
+  transform:scale(1.08);
+  box-shadow:0 0 25px rgba(0,255,255,0.6);
+}
+
+.producto img{
+  width:100%;
+  height:45px;
+  object-fit:contain;
+  background:white;
+  border-radius:8px;
+  margin-bottom:6px;
+}
+
+button{
+  width:100%;
+  padding:10px;
+  border:none;
+  border-radius:12px;
+  background:linear-gradient(145deg,#00f0ff,#0072ff);
+  color:white;
+  font-weight:bold;
+  box-shadow:0 4px 15px rgba(0,114,255,0.6);
+}
+
+.carrito{
+  margin-top:20px;
+  background:#0f172a;
+  padding:12px;
+  border-radius:12px;
+  box-shadow:0 0 10px rgba(0,255,255,0.3);
+}
+
+.whatsapp{
+  display:block;
+  margin-top:10px;
+  text-align:center;
+  padding:12px;
+  background:#25D366;
+  border-radius:10px;
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+p{line-height:1.7;margin-bottom:10px;}
+
+.notificacion{
+  position:fixed;
+  bottom:120px;
+  left:20px;
+  background:#0f172a;
+  padding:10px;
+  border-radius:10px;
+  display:none;
+  box-shadow:0 0 10px rgba(0,255,255,0.5);
+}
+
+.temporizador{
+  color:#facc15;
+  font-size:12px;
+}
+
+</style></head><body><h1 style="font-size:44px;font-weight:700;margin-bottom:70px;text-shadow:0 0 10px #00f0ff,0 0 20px #00f0ff,0 0 40px #00f0ff;color:#00f0ff;letter-spacing:1px;">
+🏰 Mundo Digital Castillo
+</h1><div style="background:linear-gradient(135deg,#0f172a,#020617);padding:18px;border-radius:14px;margin-bottom:15px;box-shadow:0 0 25px rgba(0,255,255,0.35);border:1px solid rgba(0,255,255,0.3);animation:fadeIn 1.3s ease-in-out">
+  <h3 style="color:#00f0ff;font-size:22px;letter-spacing:.5px;display:flex;align-items:center;gap:8px">🎯 Misión <span style='font-size:12px;color:#22c55e'>• Compromiso</span></h3>
+  <p style="font-size:15px;line-height:1.8;margin-top:8px;color:#e2e8f0">
+    Brindar acceso <span style="color:#22c55e;font-weight:bold">rápido, seguro y económico</span> a plataformas digitales,
+    garantizando confianza, calidad y atención inmediata para cada cliente.
+  </p>
+</div><div style="background:linear-gradient(135deg,#0f172a,#020617);padding:18px;border-radius:14px;margin-bottom:15px;box-shadow:0 0 25px rgba(0,255,255,0.35);border:1px solid rgba(0,255,255,0.3);animation:fadeIn 1.3s ease-in-out">
+  <h3 style="color:#00f0ff;font-size:22px;letter-spacing:.5px;display:flex;align-items:center;gap:8px">🚀 Visión <span style='font-size:12px;color:#facc15'>• Crecimiento</span></h3>
+  <p style="font-size:15px;line-height:1.8;margin-top:8px;color:#e2e8f0">
+    Convertirnos en la <span style="color:#22c55e;font-weight:bold">tienda líder en servicios digitales</span>,
+    reconocida por su rapidez, confianza y crecimiento constante en el mercado.
+  </p>
+</div><div class="bienvenida" style="margin-top:20px;"><p>💬 Apreciable cliente</p>
+<p>🔥 Oferta en combos disponible</p>
+<p>ℹ️ Pregunta por plataformas adicionales</p>
 </div><h3>🎬 Plataformas</h3>
 <div class="productos" id="productos"></div><h3>📄 Actas ($25 c/u)</h3>
 <div class="productos">
-<div class="producto"><h4>Nacimiento</h4><p class="precio">$25</p><button onclick="agregar('Acta nacimiento',25)">Comprar</button></div>
-<div class="producto"><h4>Matrimonio</h4><p class="precio">$25</p><button onclick="agregar('Acta matrimonio',25)">Comprar</button></div>
-<div class="producto"><h4>Defunción</h4><p class="precio">$25</p><button onclick="agregar('Acta defunción',25)">Comprar</button></div>
-<div class="producto"><h4>Divorcio</h4><p class="precio">$25</p><button onclick="agregar('Acta divorcio',25)">Comprar</button></div>
-</div><div class="carrito">
+  <div class="producto">
+    <h4>Acta de Nacimiento</h4>
+    <p>$25</p>
+    <button onclick="agregar('Acta de nacimiento',25)">Comprar</button>
+  </div>
+  <div class="producto">
+    <h4>Acta de Matrimonio</h4>
+    <p>$25</p>
+    <button onclick="agregar('Acta de matrimonio',25)">Comprar</button>
+  </div>
+  <div class="producto">
+    <h4>Acta de Defunción</h4>
+    <p>$25</p>
+    <button onclick="agregar('Acta de defunción',25)">Comprar</button>
+  </div>
+  <div class="producto">
+    <h4>Acta de Divorcio</h4>
+    <p>$25</p>
+    <button onclick="agregar('Acta de divorcio',25)">Comprar</button>
+  </div>
+</div>
+<div class="productos" id="productos"></div><div class="carrito">
+  <div style="margin-bottom:10px;padding:10px;border-radius:10px;background:#020617;border:1px solid rgba(0,255,255,0.2)">
+    <strong>💳 Pago por transferencia</strong><br>
+    Banco: Nu<br>
+    Nombre: José Manuel
+  </div>
 <h3>🛒 Carrito</h3>
 <ul id="lista"></ul>
 <p>Total: $<span id="total">0</span></p>
-</div></div><a class="whatsapp" id="wa" href="#">Comprar</a>
-
-<script>
+<a class="whatsapp" id="wa" href="#">Comprar por WhatsApp</a>
+</div><script>
 const productos=[
 {name:"Netflix",precio:70},
 {name:"Disney+",precio:35},
@@ -75,43 +220,113 @@ const imagenes={
 "HBO Max":"https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg",
 "Paramount+":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Paramount%2B_logo.svg/512px-Paramount%2B_logo.svg.png",
 "Vix Premium":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Vix_logo.svg/512px-Vix_logo.svg.png",
-"Apple TV":"https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg",
+"Apple TV":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Apple_TV_Plus_Logo.svg/512px-Apple_TV_Plus_Logo.svg.png",
 "Crunchyroll":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Crunchyroll_Logo.svg/512px-Crunchyroll_Logo.svg.png",
 "Prime Video":"https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png"
 };
 
 let carrito=[];
+
 const cont=document.getElementById("productos");
 const lista=document.getElementById("lista");
 const totalEl=document.getElementById("total");
 
-function render(listaProd){
-cont.innerHTML="";
-listaProd.forEach(p=>{
-let d=document.createElement("div");
-d.className="producto";
-d.innerHTML=`<img src="${imagenes[p.name]}"><h4>${p.name}</h4><p class="precio">$${p.precio}</p><button onclick="agregar('${p.name}',${p.precio})">Comprar</button>`;
-cont.appendChild(d);
-});
+function render(){
+  cont.scrollLeft = 0;
+  cont.innerHTML="";
+  productos.forEach(p=>{
+    let d=document.createElement("div");
+    d.className="producto";
+    d.innerHTML=`
+      <img src="${imagenes[p.name]}">
+      <h4>${p.name}</h4>
+      <p>$${p.precio}</p>
+      <button onclick="agregar('${p.name}',${p.precio})">Comprar</button>
+    `;
+    cont.appendChild(d);
+  });
 }
-render(productos);
+render();
 
-function filtrar(){
-let t=document.getElementById("buscador").value.toLowerCase();
-render(productos.filter(p=>p.name.toLowerCase().includes(t)));
+
+
+function agregar(n,p){
+  carrito.push({n,p});
+  actualizar();
 }
-
-function agregar(n,p){carrito.push({n,p});actualizar();}
 
 function actualizar(){
-lista.innerHTML="";let total=0;
-carrito.forEach(i=>{let li=document.createElement("li");li.textContent=i.n+" $"+i.p;lista.appendChild(li);total+=i.p;});
+  lista.innerHTML="";
+  let total=0;
 
-totalEl.textContent=total;
-let msg="Hola quiero comprar:%0A";
-carrito.forEach(i=>msg+=`- ${i.n} $${i.p}%0A`);
-msg+=`Total: $${total}`;
+  carrito.forEach(i=>{
+    let li=document.createElement("li");
+    li.textContent=i.n+" $"+i.p;
+    lista.appendChild(li);
+    total+=i.p;
+  });
+
+  totalEl.textContent=total;
+
+  let msg = "🚀 *MUNDO DIGITAL CASTILLO* 🏰%0A%0A";
+msg += "👋 Hola, quiero realizar una compra premium:%0A";
+msg += "━━━━━━━━━━━━━━━%0A";
+
+carrito.forEach(i=> msg += `🔥 ${i.n} - $${i.p}%0A`);
+
+msg += "━━━━━━━━━━━━━━━%0A";
+msg += `💰 *Total a pagar:* $${total}%0A%0A`;
+
+msg += "⚡ Activación inmediata en minutos%0A";
+msg += "🔒 Servicio 100% seguro y confiable%0A";
+msg += "🎯 Atención rápida y personalizada%0A";
+msg += "💳 Envíame los datos de pago por favor%0A%0A";
+
+msg += "🙌 Quedo atento, gracias";
+
 wa.href=`https://wa.me/5215638633646?text=${msg}`;
 }
+
+
+
+
+// BADGE MÁS VENDIDO DINÁMICO
+setInterval(()=>{
+  const items=document.querySelectorAll('.producto');
+  items.forEach(i=>{
+    i.querySelector('.badge')?.remove();
+  });
+  const random=items[Math.floor(Math.random()*items.length)];
+  if(random){
+    const b=document.createElement('div');
+    b.className='badge';
+    b.innerText='🔥 Más vendido';
+    b.style.position='absolute';
+    b.style.top='5px';
+    b.style.left='5px';
+    b.style.background='#facc15';
+    b.style.color='#000';
+    b.style.fontSize='10px';
+    b.style.padding='3px 6px';
+    b.style.borderRadius='6px';
+    random.style.position='relative';
+    random.appendChild(b);
+  }
+},4000);
+
+// EFECTO CLICK
+function vibrar(){
+  if(navigator.vibrate){navigator.vibrate(50);} 
+}
+
+const botones=document.querySelectorAll('button');
+botones.forEach(b=>{
+  b.addEventListener('click',()=>{
+    vibrar();
+    b.style.transform='scale(0.95)';
+    setTimeout(()=>b.style.transform='scale(1)',150);
+  });
+});
+
 </script></body>
 </html>
