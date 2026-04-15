@@ -1,0 +1,113 @@
+<!DOCTYPE html><html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Streaming Castillo</title><style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
+body{background: radial-gradient(circle at top,#020617,#000);color:white;}
+
+header{padding:20px;display:flex;align-items:center;gap:12px;}
+header img{width:90px;border-radius:12px;box-shadow:0 0 15px #00f0ff;}
+
+.buscador{flex:1;}
+.buscador input{width:100%;padding:12px;border-radius:10px;border:1px solid #00f0ff;background:#020617;color:white;}
+
+.container{padding:15px;}
+
+.bienvenida{background:#0f172a;padding:15px;border-radius:12px;margin-bottom:15px;box-shadow:0 0 10px rgba(0,255,255,0.2);} 
+.bienvenida h2{color:#00f0ff;margin-bottom:5px;}
+
+.productos{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:20px;}
+
+.producto{background:#0f172a;padding:12px;border-radius:12px;text-align:center;box-shadow:0 0 10px rgba(0,255,255,0.2);} 
+.producto img{width:100%;height:40px;object-fit:contain;margin-bottom:6px;}
+
+.precio{color:#00ff9d;margin:5px 0;font-weight:bold;}
+
+button{padding:8px;border:none;border-radius:10px;background:linear-gradient(145deg,#00f0ff,#0072ff);color:white;font-weight:bold;}
+
+.carrito{background:#0f172a;padding:12px;border-radius:12px;box-shadow:0 0 10px rgba(0,255,255,0.2);} 
+
+.whatsapp{position:fixed;bottom:20px;right:20px;background:#25D366;padding:15px;border-radius:50px;color:white;text-decoration:none;font-weight:bold;}
+</style></head><body>
+<header>
+<img src="logo.png">
+<div class="buscador">
+<input type="text" id="buscador" placeholder="Buscar..." onkeyup="filtrar()">
+</div>
+</header><div class="container"><div class="bienvenida">
+<h2>👋 Bienvenido a Streaming Castillo</h2>
+<p>✅ Entrega inmediata<br>💳 Pago por transferencia<br>🔥 Los mejores precios</p>
+</div><h3>🎬 Plataformas</h3>
+<div class="productos" id="productos"></div><h3>📄 Actas ($25 c/u)</h3>
+<div class="productos">
+<div class="producto"><h4>Acta nacimiento</h4><p class="precio">$25</p><button onclick="agregar('Acta nacimiento',25)">Comprar</button></div>
+<div class="producto"><h4>Acta matrimonio</h4><p class="precio">$25</p><button onclick="agregar('Acta matrimonio',25)">Comprar</button></div>
+<div class="producto"><h4>Acta defunción</h4><p class="precio">$25</p><button onclick="agregar('Acta defunción',25)">Comprar</button></div>
+<div class="producto"><h4>Acta divorcio</h4><p class="precio">$25</p><button onclick="agregar('Acta divorcio',25)">Comprar</button></div>
+</div><div class="carrito">
+<h3>🛒 Carrito</h3>
+<ul id="lista"></ul>
+<p>Total: $<span id="total">0</span></p>
+</div></div><a class="whatsapp" id="wa" href="#">Comprar</a>
+
+<script>
+const productos=[
+{name:"Netflix",precio:70},
+{name:"Disney+",precio:35},
+{name:"HBO Max",precio:25},
+{name:"Paramount+",precio:20},
+{name:"Vix Premium",precio:20},
+{name:"Apple TV",precio:30},
+{name:"Crunchyroll",precio:25},
+{name:"Prime Video",precio:25}
+];
+
+const imagenes={
+"Netflix":"https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg",
+"Disney+":"https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg",
+"HBO Max":"https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg",
+"Paramount+":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Paramount%2B_logo.svg/512px-Paramount%2B_logo.svg.png",
+"Vix Premium":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Vix_logo.svg/512px-Vix_logo.svg.png",
+"Apple TV":"https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg",
+"Crunchyroll":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Crunchyroll_Logo.svg/512px-Crunchyroll_Logo.svg.png",
+"Prime Video":"https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png"
+};
+
+let carrito=[];
+const cont=document.getElementById("productos");
+const lista=document.getElementById("lista");
+const totalEl=document.getElementById("total");
+
+function render(listaProd){
+cont.innerHTML="";
+listaProd.forEach(p=>{
+let d=document.createElement("div");
+d.className="producto";
+d.innerHTML=`<img src="${imagenes[p.name]}"><h4>${p.name}</h4><p class="precio">$${p.precio}</p><button onclick="agregar('${p.name}',${p.precio})">Comprar</button>`;
+cont.appendChild(d);
+});
+}
+render(productos);
+
+function filtrar(){
+let t=document.getElementById("buscador").value.toLowerCase();
+render(productos.filter(p=>p.name.toLowerCase().includes(t)));
+}
+
+function agregar(n,p){carrito.push({n,p});actualizar();}
+
+function actualizar(){
+lista.innerHTML="";let total=0;
+carrito.forEach(i=>{let li=document.createElement("li");li.textContent=i.n+" $"+i.p;lista.appendChild(li);total+=i.p;});
+
+totalEl.textContent=total;
+let msg="Hola quiero comprar:%0A";
+carrito.forEach(i=>msg+=`- ${i.n} $${i.p}%0A`);
+msg+=`Total: $${total}`;
+wa.href=`https://wa.me/5215638633646?text=${msg}`;
+}
+</script></body>
+</html>
